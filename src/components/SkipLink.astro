@@ -1,0 +1,40 @@
+---
+const { targetId, targetName } = Astro.props;
+---
+
+<style>
+  a {
+    position: absolute !important;
+    top: 0.5rem !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+    -webkit-clip-path: inset(50%) !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+    font-family: 'GDS Transport', arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: underline;
+    text-decoration-thickness: max(1px, 0.0625rem);
+    display: inline-block;
+    padding: 1rem 0.5rem;
+    background-color: rgb(var(--white));
+    color: rgb(var(--black));
+
+    &:focus {
+      width: auto !important;
+      height: auto !important;
+      margin: inherit !important;
+      overflow: visible !important;
+      clip: auto !important;
+      -webkit-clip-path: none !important;
+      clip-path: none !important;
+      white-space: inherit !important;
+    }
+  }
+</style>
+
+<a href=`#${targetId}`>Skip to {targetName}</a>
