@@ -1,9 +1,12 @@
 ---
+import { SITE_TITLE } from '../consts';
 import Layout from '../layouts/BlogPost.astro';
+
+const pageTitle = 'About Me';
 ---
 
 <Layout
-	title="About Me"
+	title={`${pageTitle} - ${SITE_TITLE}`}
 	description="Lorem ipsum dolor sit amet"
 	pubDate={new Date('August 08 2021')}
 	heroImage="/blog-placeholder-about.jpg"
