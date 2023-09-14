@@ -1,0 +1,76 @@
+---
+import { getCollection } from 'astro:content';
+import FormattedDate from '../components/FormattedDate.astro';
+
+const { currentPostId } = Astro.props;
+
+const posts = (await getCollection('blog')).filter(
+  (post) => currentPostId !== post.id
+);
+---
+
+<style>
+  section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid rgb(var(--black));
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    display: block;
+  }
+
+  .heading {
+    margin-bottom: 2rem;
+  }
+
+  .title {
+    font-size: 100%;
+    margin-bottom: 0;
+  }
+
+  .date {
+    margin-top: 0;
+    font-size: 80%;
+  }
+</style>
+
+{
+  posts.length > 0 ? (
+    <section aria-labelledby="blogpost-browser-heading">
+      <h2 id="blogpost-browser-heading" class="heading">
+        Other blog posts
+      </h2>
+      <ul>
+        {posts.map((post) => {
+          return (
+            <li>
+              <a href={`/blog/${post.slug}/`}>
+                <img
+                  width={720}
+                  height={360}
+                  src={post.data.heroImage}
+                  alt=""
+                  transition:name={`hero-image-${post.id}`}
+                />
+                <h3 class="title">{post.data.title}</h3>
+                <p class="date">
+                  <FormattedDate date={post.data.pubDate} />
+                </p>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  ) : null
+}
