@@ -29,6 +29,10 @@ const posts = (await getCollection('blog')).filter(
     display: block;
   }
 
+  a {
+    display: block;
+  }
+
   .heading {
     margin-bottom: 2rem;
   }
@@ -62,8 +66,13 @@ const posts = (await getCollection('blog')).filter(
                   alt=""
                   transition:name={`hero-image-${post.id}`}
                 />
-                <h3 class="title">{post.data.title}</h3>
-                <p class="date">
+                <h3
+                  class="title"
+                  transition:name={`blogpost-heading-${post.id}`}
+                >
+                  {post.data.title}
+                </h3>
+                <p class="date" transition:name={`blogpost-date-${post.id}`}>
                   <FormattedDate date={post.data.pubDate} />
                 </p>
               </a>

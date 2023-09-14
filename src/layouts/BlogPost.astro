@@ -75,7 +75,11 @@ const { title, description, pubDate, updatedDate, heroImage, id } = Astro.props;
         </div>
         <div class="prose">
           <div class="title">
-            <div class="date">
+            <div
+              class="date"
+              transition:name={`blogpost-date-${id}`}
+              style={`view-transition-name: blogpost-date-${id};`}
+            >
               <FormattedDate date={pubDate} />
               {
                 updatedDate && (
@@ -85,7 +89,12 @@ const { title, description, pubDate, updatedDate, heroImage, id } = Astro.props;
                 )
               }
             </div>
-            <h1>{title}</h1>
+            <h1
+              transition:name={`blogpost-heading-${id}`}
+              style={`view-transition-name: blogpost-heading-${id};`}
+            >
+              {title}
+            </h1>
             <hr />
           </div>
           <slot />
